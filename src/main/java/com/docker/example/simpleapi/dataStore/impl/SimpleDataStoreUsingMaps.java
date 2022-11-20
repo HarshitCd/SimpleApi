@@ -4,18 +4,18 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
 
 import com.docker.example.simpleapi.dataStore.SimpleDataStoreInterface;
+import com.docker.example.simpleapi.models.StudentModel;
 
 public class SimpleDataStoreUsingMaps implements SimpleDataStoreInterface {
 
-    Map<String, JSONObject> dataStore = new HashMap<>();
+    Map<String, StudentModel> dataStore = new HashMap<>();
 
     @Override
-    public void addData(JSONObject data) {
+    public void addData(StudentModel data) {
         
-        final String usn = data.get("usn").toString();
+        final String usn = data.getUsn();
 
         if(dataStore.get(usn) == null) {
             dataStore.put(usn, data);
@@ -23,16 +23,15 @@ public class SimpleDataStoreUsingMaps implements SimpleDataStoreInterface {
     }
 
     @Override
-    public Collection<JSONObject> fetchAllData() {
+    public Collection<StudentModel> fetchAllData() {
         
         return dataStore.values();
     }
 
     @Override
-    public JSONObject fetchSpecificData(String usn) {
+    public StudentModel fetchSpecificData(String usn) {
         
-        for(String key: dataStore.keySet()) System.out.println(usn.equals(key));
-        return dataStore.getOrDefault(usn, new JSONObject());
+        return dataStore.getOrDefault(usn, new StudentModel());
     }
 
     @Override
@@ -48,9 +47,9 @@ public class SimpleDataStoreUsingMaps implements SimpleDataStoreInterface {
     }
 
     @Override
-    public void updateSpecificData(JSONObject data) {
+    public void updateSpecificData(StudentModel data) {
         
-        final String usn = data.get("usn").toString();
+        final String usn = data.getUsn();
         
         if(dataStore.get(usn) != null) {
             dataStore.put(usn, data);
