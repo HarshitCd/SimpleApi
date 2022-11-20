@@ -2,10 +2,10 @@ package com.docker.example.simpleapi.services.impl;
 
 import java.util.Collection;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.docker.example.simpleapi.dataStore.SimpleDataStoreInterface;
+import com.docker.example.simpleapi.models.StudentModel;
 import com.docker.example.simpleapi.services.SimpleServiceInterface;
 
 public class MySimpleService implements SimpleServiceInterface {
@@ -14,22 +14,22 @@ public class MySimpleService implements SimpleServiceInterface {
     private SimpleDataStoreInterface dataStore;
 
     @Override
-    public void addData(JSONObject data) {
+    public void addData(StudentModel data) {
         dataStore.addData(data);
     }
 
     @Override
-    public Collection<JSONObject> fetchAllData() {
+    public Collection<StudentModel> fetchAllData() {
         return dataStore.fetchAllData();
     }
 
     @Override
-    public JSONObject fetchSpecificData(String usn) {
+    public StudentModel fetchSpecificData(String usn) {
         return dataStore.fetchSpecificData(usn);
     }
 
     @Override
-    public void updateSpecificData(JSONObject data) {
+    public void updateSpecificData(StudentModel data) {
         dataStore.updateSpecificData(data);
     }
 

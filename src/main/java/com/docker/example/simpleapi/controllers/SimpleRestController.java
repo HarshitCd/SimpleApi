@@ -2,7 +2,6 @@ package com.docker.example.simpleapi.controllers;
 
 import java.util.Collection;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.docker.example.simpleapi.models.StudentModel;
 import com.docker.example.simpleapi.services.SimpleServiceInterface;
 
 @RestController()
@@ -26,22 +26,22 @@ public class SimpleRestController {
     }
 
     @PostMapping("/addData")
-    public void addData(@RequestBody JSONObject data) {
+    public void addData(@RequestBody StudentModel data) {
         service.addData(data);
     }
 
     @GetMapping("/fetchAllData")
-    public Collection<JSONObject> fetchAddData() {
+    public Collection<StudentModel> fetchAddData() {
         return service.fetchAllData();
     }
 
     @GetMapping("/fetchSpecificData/{usn}")
-    public JSONObject fetchSpecificData(@PathVariable String usn) {
+    public StudentModel fetchSpecificData(@PathVariable String usn) {
         return service.fetchSpecificData(usn);
     }
 
     @PutMapping("/updateSpecificData")
-    public void updateSpecificData(@RequestBody JSONObject data) {
+    public void updateSpecificData(@RequestBody StudentModel data) {
         service.updateSpecificData(data);
     }
 

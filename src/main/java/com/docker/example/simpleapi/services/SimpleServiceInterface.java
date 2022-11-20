@@ -1,16 +1,14 @@
 package com.docker.example.simpleapi.services;
 
 import java.util.Collection;
-import java.util.List;
 
-import org.json.simple.JSONObject;
-
+import com.docker.example.simpleapi.models.StudentModel;
 
 public interface SimpleServiceInterface {
-    public void addData(JSONObject data);
-    public Collection<JSONObject> fetchAllData();
-    public JSONObject fetchSpecificData(String usn);
-    public void updateSpecificData(JSONObject data);
+    public void addData(StudentModel data);
+    public Collection<StudentModel> fetchAllData();
+    public StudentModel fetchSpecificData(String usn);
+    public void updateSpecificData(StudentModel data);
     public void deleteAllData();
     public void deleteSpecificData(String usn);
 }
