@@ -1,6 +1,7 @@
 package com.docker.example.simpleapi.controllers;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.docker.example.simpleapi.models.StudentModel;
+import com.docker.example.simpleapi.models.TodoModel;
 import com.docker.example.simpleapi.services.SimpleServiceInterface;
 
 @RestController()
@@ -26,22 +27,22 @@ public class SimpleRestController {
     }
 
     @PostMapping("/addData")
-    public void addData(@RequestBody StudentModel data) {
+    public void addData(@RequestBody TodoModel data) {
         service.addData(data);
     }
 
     @GetMapping("/fetchAllData")
-    public Collection<StudentModel> fetchAddData() {
+    public Collection<TodoModel> fetchAddData() {
         return service.fetchAllData();
     }
 
-    @GetMapping("/fetchSpecificData/{usn}")
-    public StudentModel fetchSpecificData(@PathVariable String usn) {
-        return service.fetchSpecificData(usn);
+    @GetMapping("/fetchSpecificData/{id}")
+    public TodoModel fetchSpecificData(@PathVariable UUID id) {
+        return service.fetchSpecificData(id);
     }
 
     @PutMapping("/updateSpecificData")
-    public void updateSpecificData(@RequestBody StudentModel data) {
+    public void updateSpecificData(@RequestBody TodoModel data) {
         service.updateSpecificData(data);
     }
 
@@ -50,8 +51,8 @@ public class SimpleRestController {
         service.deleteAllData();
     }
 
-    @DeleteMapping("/deleteSpecificData/{usn}")
-    public void deleteSpecificData(@PathVariable String usn) {
-        service.deleteSpecificData(usn);
+    @DeleteMapping("/deleteSpecificData/{id}")
+    public void deleteSpecificData(@PathVariable UUID id) {
+        service.deleteSpecificData(id);
     }
 }

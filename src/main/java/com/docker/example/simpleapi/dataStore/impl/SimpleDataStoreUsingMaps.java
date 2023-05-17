@@ -3,35 +3,35 @@ package com.docker.example.simpleapi.dataStore.impl;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.UUID;
 
 import com.docker.example.simpleapi.dataStore.SimpleDataStoreInterface;
-import com.docker.example.simpleapi.models.StudentModel;
+import com.docker.example.simpleapi.models.TodoModel;
 
 public class SimpleDataStoreUsingMaps implements SimpleDataStoreInterface {
 
-    Map<String, StudentModel> dataStore = new HashMap<>();
+    Map<UUID, TodoModel> dataStore = new HashMap<>();
 
     @Override
-    public void addData(StudentModel data) {
+    public void addData(TodoModel data) {
         
-        final String usn = data.getUsn();
+        final UUID id = data.getId();
 
-        if(dataStore.get(usn) == null) {
-            dataStore.put(usn, data);
+        if(dataStore.get(id) == null) {
+            dataStore.put(id, data);
         }
     }
 
     @Override
-    public Collection<StudentModel> fetchAllData() {
+    public Collection<TodoModel> fetchAllData() {
         
         return dataStore.values();
     }
 
     @Override
-    public StudentModel fetchSpecificData(String usn) {
+    public TodoModel fetchSpecificData(UUID id) {
         
-        return dataStore.getOrDefault(usn, new StudentModel());
+        return dataStore.getOrDefault(id, new TodoModel());
     }
 
     @Override
@@ -41,18 +41,18 @@ public class SimpleDataStoreUsingMaps implements SimpleDataStoreInterface {
     }
 
     @Override
-    public void deleteSpecificData(String usn) {
+    public void deleteSpecificData(UUID id) {
         
-        dataStore.remove(usn);
+        dataStore.remove(id);
     }
 
     @Override
-    public void updateSpecificData(StudentModel data) {
+    public void updateSpecificData(TodoModel data) {
         
-        final String usn = data.getUsn();
+        final UUID id = data.getId();
         
-        if(dataStore.get(usn) != null) {
-            dataStore.put(usn, data);
+        if(dataStore.get(id) != null) {
+            dataStore.put(id, data);
         }
         
     }

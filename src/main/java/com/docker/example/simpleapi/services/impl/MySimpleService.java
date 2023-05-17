@@ -1,11 +1,12 @@
 package com.docker.example.simpleapi.services.impl;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.docker.example.simpleapi.dataStore.SimpleDataStoreInterface;
-import com.docker.example.simpleapi.models.StudentModel;
+import com.docker.example.simpleapi.models.TodoModel;
 import com.docker.example.simpleapi.services.SimpleServiceInterface;
 
 public class MySimpleService implements SimpleServiceInterface {
@@ -14,22 +15,22 @@ public class MySimpleService implements SimpleServiceInterface {
     private SimpleDataStoreInterface dataStore;
 
     @Override
-    public void addData(StudentModel data) {
+    public void addData(TodoModel data) {
         dataStore.addData(data);
     }
 
     @Override
-    public Collection<StudentModel> fetchAllData() {
+    public Collection<TodoModel> fetchAllData() {
         return dataStore.fetchAllData();
     }
 
     @Override
-    public StudentModel fetchSpecificData(String usn) {
-        return dataStore.fetchSpecificData(usn);
+    public TodoModel fetchSpecificData(UUID id) {
+        return dataStore.fetchSpecificData(id);
     }
 
     @Override
-    public void updateSpecificData(StudentModel data) {
+    public void updateSpecificData(TodoModel data) {
         dataStore.updateSpecificData(data);
     }
 
@@ -39,8 +40,8 @@ public class MySimpleService implements SimpleServiceInterface {
     }
 
     @Override
-    public void deleteSpecificData(String usn) {
-        dataStore.deleteSpecificData(usn);
+    public void deleteSpecificData(UUID id) {
+        dataStore.deleteSpecificData(id);
     }
     
 }

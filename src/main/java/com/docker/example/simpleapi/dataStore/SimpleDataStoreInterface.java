@@ -1,14 +1,15 @@
 package com.docker.example.simpleapi.dataStore;
 
 import java.util.Collection;
+import java.util.UUID;
 
-import com.docker.example.simpleapi.models.StudentModel;
+import com.docker.example.simpleapi.models.TodoModel;
 
 public interface SimpleDataStoreInterface {
-    public void addData(StudentModel data);
-    public Collection<StudentModel> fetchAllData();
-    public StudentModel fetchSpecificData(String usn);
-    public void updateSpecificData(StudentModel data);
+    public void addData(TodoModel data);
+    public Collection<TodoModel> fetchAllData();
+    public TodoModel fetchSpecificData(UUID id);
+    public void updateSpecificData(TodoModel data);
     public void deleteAllData();
-    public void deleteSpecificData(String usn);
+    public void deleteSpecificData(UUID id);
 }
